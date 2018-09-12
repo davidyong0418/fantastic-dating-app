@@ -1,0 +1,14 @@
+[25-May-2018 04:44:45 GMT] PHP Warning:  mysqli::real_connect(): (28000/1045): Access denied for user 'codihubi_1'@'localhost' (using password: YES) in /home/codihubi/public_html/dev/system/database/drivers/mysqli/mysqli_driver.php on line 201
+[25-May-2018 04:44:45 GMT] PHP Fatal error:  Class 'CI_Controller' not found in /home/codihubi/public_html/dev/system/core/CodeIgniter.php on line 369
+[25-May-2018 05:49:39 GMT] PHP Fatal error:  require_once(): Failed opening required 'facebook/php-sdk-v4/src/Facebook/FacebookSession.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/codihubi/public_html/dev/application/libraries/Facebook.php on line 24
+[25-May-2018 05:49:40 GMT] PHP Fatal error:  require_once(): Failed opening required 'facebook/php-sdk-v4/src/Facebook/FacebookSession.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/codihubi/public_html/dev/application/libraries/Facebook.php on line 24
+[25-May-2018 05:53:00 GMT] PHP Fatal error:  Class 'Facebook\Facebook' not found in /home/codihubi/public_html/dev/application/libraries/Facebook.php on line 67
+[26-May-2018 07:35:17 GMT] PHP Fatal error:  Class 'Facebook\Facebook' not found in /home/codihubi/public_html/dev/application/libraries/Facebook.php on line 67
+[26-May-2018 07:36:32 GMT] PHP Fatal error:  Class 'Facebook\Facebook' not found in /home/codihubi/public_html/dev/application/libraries/Facebook.php on line 67
+[26-May-2018 07:36:33 GMT] PHP Fatal error:  Class 'Facebook\Facebook' not found in /home/codihubi/public_html/dev/application/libraries/Facebook.php on line 67
+[26-May-2018 07:36:44 GMT] PHP Fatal error:  require_once(): Failed opening required 'facebook/php-sdk-v4/autoload.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/codihubi/public_html/dev/application/libraries/Facebook.php on line 23
+[26-May-2018 07:37:38 GMT] PHP Fatal error:  require_once(): Failed opening required 'facebook/php-sdk-v4/autoload.php' (include_path='.:/opt/alt/php56/usr/share/pear:/opt/alt/php56/usr/share/php') in /home/codihubi/public_html/dev/application/libraries/Facebook.php on line 23
+[28-May-2018 06:29:37 GMT] PHP Parse error:  syntax error, unexpected end of file in /home/codihubi/public_html/dev/application/controllers/User.php on line 457
+[28-May-2018 06:29:40 GMT] PHP Parse error:  syntax error, unexpected end of file in /home/codihubi/public_html/dev/application/controllers/User.php on line 457
+[28-May-2018 06:29:55 GMT] PHP Parse error:  syntax error, unexpected end of file in /home/codihubi/public_html/dev/application/controllers/User.php on line 457
+[28-May-2018 06:30:03 GMT] PHP Parse error:  syntax error, unexpected end of file in /home/codihubi/public_html/dev/application/controllers/User.php on line 457

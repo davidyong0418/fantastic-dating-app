@@ -34,6 +34,24 @@
 	    <script src="<?php echo base_url(); ?>js/jquery.cssemoticons.min.js"></script>
 	    <script src="<?php echo base_url(); ?>js/vendor/jquery.sidr.min.js"></script>
 	    <script src="<?php echo base_url(); ?>js/vendor/fastclick.js"></script>
+				
+		<script type="text/javascript">
+       var user_id  ="<?php echo isset($_SESSION['user_id']) ? $_SESSION['user_id'] : NULL; ?>"
+       var base_url  ="<?php echo base_url(); ?>";
+		</script>
+			
+		<!-- AddChat JS Files -->
+		<script src="<?php echo base_url() ?>/assets/js/jquery-ui.min.js"></script>
+		<script src="<?php echo base_url() ?>/assets/js/jquery.slimscroll.min.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/js/config.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/js/util.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/js/jquery.emojiarea.js"></script>
+		<script type="text/javascript" src="<?php echo base_url() ?>assets/js/emoji-picker.js"></script>
+		<script src="<?php echo base_url() ?>/assets/js/addchat-app.js"></script>
+
+
+
+
 
 		<script type="text/javascript">
 			

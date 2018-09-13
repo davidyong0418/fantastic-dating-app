@@ -147,7 +147,8 @@ $this->load->view('templates/headers/main_header', $title);
 						    }
 				            ?>
 			                <?php
-				                if($user["is_online"] == 1):
+								if($user["is_online"] == 1):
+									print_r('++++++++++++++++++++++++++++++');
 				            ?>
 			                <div class="online_status"><i class="fa fa-circle"></i></div>
 			                <?php
@@ -175,7 +176,8 @@ $this->load->view('templates/headers/main_header', $title);
 		    	?>
 		    	<?php foreach($users as $user): ?>
 		    	
-		    	<?php
+				<?php
+				
 		    	$birthdate = new DateTime($user["birthday"]);
 				$today     = new DateTime();
 				$interval  = $today->diff($birthdate);
@@ -219,7 +221,7 @@ $this->load->view('templates/headers/main_header', $title);
 						    }
 				            ?>
 			                <?php
-				            if($user["is_online"] == 1):
+							if($user["is_online"] == 1):
 				            ?>
 			                <div class="online_status"><i class="fa fa-circle"></i></div>
 			                <?php
@@ -235,7 +237,23 @@ $this->load->view('templates/headers/main_header', $title);
 			                }
 			                ?>
 									<div class="userslst_username <?php echo $gender_color; ?>"><a href="<?php echo base_url(); ?>user/profile/<?php echo $user["uid"]; ?>"><?php echo $user["username"]; ?></a></div>
-								<div class="userslst_age"><?php echo $age; ?> &#8226; <?php if($settings["hide_country"] == 0): ?><?php echo get_country_name_by_code($user["country"]); ?><?php else: ?><?php echo $user["city"]; ?><?php endif; ?></div>
+								<div class="userslst_age"><?php echo $age; ?> &#8226; <?php if($settings["hide_country"] == 0): ?><?php echo get_country_name_by_code($user["country"]); ?><?php else: ?><?php echo $user["city"]; ?><?php endif; ?>
+								
+								
+								<?php print_r($this->session->userdata('user_username'));
+								?>
+								
+								
+								
+								<?php
+								if($user["is_online"] == 1 && $this->session->userdata('user_username') != $user['username'] ){
+								?>
+								
+								<div class="addchat_initiate"></div>
+								<?php
+								};
+								?></div>
+								
 						</div>
 					</div>
 	            </div>

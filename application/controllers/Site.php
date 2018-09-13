@@ -3,7 +3,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Site extends CI_Controller {
 
-	
+	public function __construct()
+	{
+		parent::__construct();
+		$data = array(
+			'is_online' => 1
+		);
+		$this->session->set_userdata($data);
+		
+	}
 	function get_welcome_page()
 	{
 		$page_id = $this->input->post("page_id");
@@ -27,6 +35,10 @@ class Site extends CI_Controller {
 		}
 
 		if($this->session->userdata('user_id')) {
+			$data = array(
+				'is_online' => 1
+			);
+			$this->session->set_userdata($data);
 			redirect(base_url() . "home");	
 		} else {
 			$this->load->library('user_agent');
@@ -326,7 +338,6 @@ class Site extends CI_Controller {
 	    $this->lang->load('user_lang', $lng_opt);
 	  
     	$data["title"] = $settings["site_name"] . " - " . $settings["site_tagline"];
-    	
     	if($this->session->userdata("user_firstform") != 1)
     	{
 	    	redirect(base_url() . "user/firstlogin?redirect=true");
@@ -409,7 +420,7 @@ class Site extends CI_Controller {
 		        
 		        	
 		        $city = $this->session->userdata('filter_city');
-		        		        
+				
 		        $users = $this->user_model->get_last_registered_users_page_with_param($config["per_page"], $page, $age_from, $age_to, $gender, $country, $city, $sort_by, $this->session->userdata('user_id'))->result_array();
 		        $users_count = $this->user_model->record_count_by_settings($age_from, $age_to, $gender, $country, $city);
 		    } else {
@@ -430,7 +441,6 @@ class Site extends CI_Controller {
 		    
 		    $config["total_rows"] 	= $users_count;
 		    $this->pagination->initialize($config);
-	        
 	        $data["users"] = $users;
 	        $data["links"] = $this->pagination->create_links();
 	        
@@ -449,5 +459,103 @@ class Site extends CI_Controller {
     {
         $this->load->model('action_model');
         return $this->action_model->userAccess($page);
+	}
+	function onlinechat() 
+    {
+	    $data = array();
+	    
+    	$this->load->model("user_model");
+		$this->load->model('site_model');
+
+	    $settings = $this->site_model->get_website_settings()->result_array();
+		$settings = $settings[0];
+	    $data["settings"] = $settings;
+
+    	$data["nb_lng"] = $this->site_model->count_language_redirections();
+		$user_lng = $this->user_model->get_user_language($this->session->userdata('user_id'))->result_array();
+		
+		if(sizeof($user_lng) > 0) {
+			$lng_opt = $user_lng[0]["language"];
+		} else {
+			$lng_opt = $settings["default_language"];
+		}
+    	
+    	$this->lang->load('site_lang', $lng_opt);
+    	$this->lang->load('user_lang', $lng_opt);
+    	
+    	$data["title"] = $this->lang->line("your_friends_title");
+    	
+    	if($this->session->userdata("user_firstform") != 1)
+    	{
+	    	redirect(base_url() . "user/firstlogin?redirect=true");
+    	} else {
+	    	    	    	
+	    	if($this->session->userdata('user_id')) {
+	    		$this->load->model("pm_model");
+	    		$nb_pm = $this->pm_model->count_unread($this->session->userdata('user_id'));
+		   		$data["nb_pm"] = $nb_pm;
+				$new_profile_visits = $this->user_model->count_new_profile_visits($this->session->userdata("user_id"));
+				$data["nb_new_visits"] = $new_profile_visits;
+				
+				$new_poke_requests = $this->user_model->count_new_requests($this->session->userdata("user_id"));
+				$data["nb_new_requests"] = $new_poke_requests;
+				
+				$new_loves = $this->user_model->count_new_loves($this->session->userdata("user_id"));
+				$data["nb_new_loves"] = $new_loves;
+				
+				$new_friends = 0;
+				$data["nb_new_friends"] = 0;
+				
+				$data["total_notif"] = intval($new_profile_visits) + intval($nb_pm) + intval($new_loves) + intval($new_poke_requests) + intval($new_friends);
+
+				$datauser = $this->user_model->get($this->session->userdata('user_id'))->result_array();
+				$datauser = $datauser[0];
+				$data["user"] = $datauser;
+				
+				$this->user_model->update_last_activity($this->session->userdata('user_id'));
+				$this->user_model->update_friends_to_seen($this->session->userdata('user_id'));
+		    
+			    
+			    
+			    // Get custom pages
+				if($this->site_model->count_custom_pages() > 0) {
+					$data["pages"] = $this->site_model->get_pages()->result_array();
+				} else {
+					$data["pages"] = null;
+				}
+		    		    				    
+				$this->load->library("pagination");
+			    
+			    $config = array();
+		        $config["base_url"] 	= base_url() . "user/friends";
+		       
+		        $config["per_page"] 	= 20;
+		        $config["uri_segment"] 	= 3;
+		        $config['num_links'] 	= 1;
+		        
+		        $config['first_link']	= "<<";
+		        $config['last_link']	= ">>";
+		        
+		        $page = ($this->uri->segment(3)) ? $this->uri->segment(3) : 0;
+
+	        	$users = $this->user_model->get_last_friends($config["per_page"], $page, $this->session->userdata('user_id'))->result_array();
+				$users_count = $this->user_model->record_last_friends_count($this->session->userdata('user_id'));
+			    
+			    $config["total_rows"] 	= $users_count;
+			    $this->pagination->initialize($config);
+		        
+		        $data["users"] = $users;
+		        $data["links"] = $this->pagination->create_links();
+		        
+    	        $data["jscripts"] = array(
+					base_url() . "js/pages/friends.js"
+				);
+				$data['encounter']=$this->site_model->count_wesite_encounter();
+			   	$this->load->view('site/onlinechat', $data);
+			} else {
+			    redirect(base_url() . "?error=fb_session");
+		    }
+		   	
+	   	}
     }
 }

@@ -28,7 +28,10 @@
     <link href="<?php echo base_url(); ?>css/jquery.nouislider.min.css" rel="stylesheet">
     <link href="<?php echo base_url(); ?>css/jquery.cssemoticons.css" media="screen" rel="stylesheet" type="text/css" />
     <link href="<?php echo base_url(); ?>css/site/style.css" rel="stylesheet">
-    
+    <!-- AddChat CSS Files -->
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url() ?>assets/css/emoji.css">
+    <link href="<?php echo base_url() ?>assets/css/addchat-app.css" rel="stylesheet">
+    <!-- End AddChat CSS Files -->
     <style>
 	    body {
 		<?php
@@ -198,6 +201,14 @@
 		</div>
 		<div id="bs-collapse-1">
 			<ul class="nav navbar-nav navbar-left">
+
+			<li>
+	                <a href="<?php echo base_url(); ?>site/onlinechat"><span class="nav-label">TEST</span></a>
+	            </li>
+
+
+
+
 				<li>
 	                <a href="<?php echo base_url() ?>"><span class="nav-label"><?php echo $this->lang->line("m_browse_profiles"); ?> </span></a>
 	            </li>

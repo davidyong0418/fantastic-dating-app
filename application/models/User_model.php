@@ -846,8 +846,6 @@ class user_model extends CI_Model
 								   AND r.status = 0
 								   AND r.type = 0
 								   ORDER BY r.date DESC LIMIT $page,$limit", array($user_id));
-								   
-		
 		return $users;
 	}
 	
@@ -907,7 +905,6 @@ class user_model extends CI_Model
 				   
 		$query.= "AND u.status = 1 ";
 		$query.= "AND TIMESTAMPDIFF(YEAR, birthday, CURDATE()) >= ? AND TIMESTAMPDIFF(YEAR, birthday, CURDATE()) <= ? ";
-		
 		array_push($array_params, $user_id, $age_from, $age_to);
 		
 		if($gender == 2) {

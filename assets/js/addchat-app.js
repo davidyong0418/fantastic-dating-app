@@ -487,6 +487,15 @@ $(function(e) {
     /*!
      * send message
      */
+   
+    $(document).on('keyup','.emoji-wysiwyg-editor',function(event){
+        event.preventDefault();
+  // Number 13 is the "Enter" key on the keyboard
+    if (event.keyCode === 13) {
+        $('#send-msg').trigger('click');
+    }
+
+    });
     $(document).on('click', '#send-msg', function(e) {
         var txtarea = $('#send-text');
 

@@ -1855,7 +1855,8 @@ class User extends OK_Controller {
 				    $targetFileThumb = str_replace('//','/',$targetPathThumb) . $nameFile . "." . $fileParts["extension"];
 				    $targetFileEcho = str_replace('//','/',$targetPathEcho) . $nameFile . "." . $fileParts["extension"];
 				    $targetFileEchoThumb = str_replace('//','/',$targetPathEchoThumb) . $nameFile . "." . $fileParts["extension"];
-				
+					$this->db->set('ac_image', $targetFile);
+					$this->db->insert('user');
 				    if (in_array($fileParts['extension'],$fileTypes)) {
 				    
 				    	$this->load->model('photo_model');

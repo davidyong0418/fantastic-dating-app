@@ -91,7 +91,7 @@
                 <input type="hidden" value="<?php echo $user->id; ?>" name="user_id" />
                 <div class="user-profile-img">
                    <div class="profile-img">
-                    <?php  $avatar = $user->avatar ? $img_upld_pth.'/'.$user->avatar : $ast_img_pth.'/avatar.png' ; ?>
+                    <?php  $avatar = $user->avatar ? $user->avatar : $ast_img_pth.'/avatar.png' ; ?>
                     <img src="<?php echo base_url($avatar); ?>" class="img-responsive img-circle">
                    </div>
                 </div>
@@ -166,7 +166,7 @@
         </div>
         <div class="chat-textarea">
             <textarea placeholder="Type your message..." class="form-control" id="send-text" data-emojiable="true" autofocus=""></textarea>
-            <button class="btn btn-block send-btn" id="send-msg"><i class="fa fa-send"></i> Send Message</button>
+            <button class="btn btn-block send-btn hidden" id="send-msg"><i class="fa fa-send"></i> Send Message</button>
         </div>
     </div>
 </div>

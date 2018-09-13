@@ -175,11 +175,12 @@ class Addchat_db_lib
                 ->or_like("$this->usrs_tb.$this->usrs_usrnme", $search, 'right')
                 ->group_end();
 
+
             $result_r = $this->AC_LIB->db
                         ->limit($limit)
                         ->get($this->usrs_tb)
                         ->result();
-
+                        
             // now get more users if the recent users less than 20
             if(count($result_r) < $limit)
             {
@@ -251,7 +252,7 @@ class Addchat_db_lib
             ->or_like("$this->usrs_tb.$this->usrs_lstnme", $search, 'both')
             ->or_like("$this->usrs_tb.$this->usrs_usrnme", $search, 'right')
             ->group_end();
-
+        
         return  $this->AC_LIB->db
                 ->limit($limit)
                 ->get($this->usrs_tb)

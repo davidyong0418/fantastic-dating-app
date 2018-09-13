@@ -44,7 +44,7 @@ class Addchat_lib {
     		
 	        $users           	 = $this->AC_LIB->addchat_db_lib->get_users($this->AC_CONFIG->l_i_usr_id, $blocked_by, $this->AC_CONFIG->usrs_lmt);
 
-	        $data['users'] 		= $users;
+			$data['users'] 		= $users;
 
 	        // upload image path
 	        $data['img_upld_pth'] = $this->AC_CONFIG->img_upld_pth;
@@ -304,18 +304,18 @@ class Addchat_lib {
 			if($message->m_from == $this->AC_CONFIG->l_i_usr_id)
 			{
 				$chat['avatar']     = $user->avatar 
-										? base_url().'/'.$this->AC_CONFIG->img_upld_pth.'/'.$user->avatar  
+										? base_url().$user->avatar  
 										: base_url().'/'.$this->AC_CONFIG->ast_img_pth.'/avatar.png';
 				$chat['name']		= 'You';
 			}
 			else
 			{
 				$chat['avatar']		= $chatbuddy->avatar 
-										? base_url().'/'.$this->AC_CONFIG->img_upld_pth.'/'.$chatbuddy->avatar 
+										? base_url().$chatbuddy->avatar 
 										: base_url().'/'.$this->AC_CONFIG->ast_img_pth.'/avatar.png';
 				$chat['name']		= ucwords($chatbuddy->username);
 			}
-
+			
 			array_push($thread, $chat);
 		}
 

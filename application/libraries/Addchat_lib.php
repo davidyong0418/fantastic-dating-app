@@ -20,7 +20,7 @@ class Addchat_lib {
         $this->AC_LIB->load->helper(array('form', 'url', 'smiley'));
         $this->AC_LIB->load->library(array('addchat_db_lib', 'form_validation'));
         $this->AC_LIB->config->load('addchat_config', TRUE);
-        $this->AC_CONFIG = $this->AC_LIB->config->item('addchat', 'addchat_config');
+		$this->AC_CONFIG = $this->AC_LIB->config->item('addchat', 'addchat_config');
     }
 
 	/*
@@ -43,9 +43,7 @@ class Addchat_lib {
     			$blocked_by[] = $val->user_id;	
     		
 	        $users           	 = $this->AC_LIB->addchat_db_lib->get_users($this->AC_CONFIG->l_i_usr_id, $blocked_by, $this->AC_CONFIG->usrs_lmt);
-
 			$data['users'] 		= $users;
-
 	        // upload image path
 	        $data['img_upld_pth'] = $this->AC_CONFIG->img_upld_pth;
 

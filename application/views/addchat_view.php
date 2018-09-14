@@ -101,7 +101,27 @@
                 </span>
                 <span class="user_status">
                     <?php $status = $user->online == 1 ? 'is-online' : 'is-offline'; ?> 
-                    <span class="user-status <?php echo $status; ?>"></span>
+                    <?php 
+                        $online_users_info = $this->session->userdata('online_users_info');
+                        foreach ($online_users_info as $item)
+                        {
+                            if($item['username'] == $user->username)
+                            {
+                                if($item['is_online'] == 1)
+                                {
+                    ?>
+                    <span class="user-status is-online"></span>
+                    <?php
+                                }
+                                else{
+                    ?>
+                    <span class="user-status is-offline"></span>
+                    <?php
+                                }
+                            }
+                        }
+                    ?>
+                    
                 </span>
             </div>
         </a>
@@ -189,8 +209,8 @@
 <!-- End addChat child container -->
 <script type="text/javascript">
     var logged_in_user = '<?php echo $logged_user->id; ?>';
-    var img_upld_pth   = '<?php echo $img_upld_pth; ?>'
-    var ast_img_pth    = '<?php echo $ast_img_pth; ?>'
+    var img_upld_pth   = '<?php echo $img_upld_pth; ?>';
+    var ast_img_pth    = '<?php echo $ast_img_pth; ?>';
 </script>
 
 <?php } ?>

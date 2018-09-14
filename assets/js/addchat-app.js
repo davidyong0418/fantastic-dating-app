@@ -491,8 +491,52 @@ $(function(e) {
     $(document).on('keyup','.emoji-wysiwyg-editor',function(event){
         event.preventDefault();
   // Number 13 is the "Enter" key on the keyboard
-    if (event.keyCode === 13) {
-        $('#send-msg').trigger('click');
+    if (event.keyCode == 13) {
+        var txtarea = $('#send-text');
+        var message = $('.emoji-wysiwyg-editor').text();
+        if(message !== "") {
+            $('#send-text').val('hello');
+            
+            $('#chat-container .emoji-wysiwyg-editor').html("");
+            
+            $.ajax({ 
+                type    : "POST", 
+                url     : base_url  + "addchat_init/send_message", 
+                data    : {
+                    message     : message, 
+                    user        : user
+                },
+                cache   : false,
+                success : function(response) {
+                    if(response.status) {
+                        
+                        msg = response.message;
+                        console.log(base_url);
+                        li = '<li class=" bubble '+ msg.type +'"><img src="'+base_url+msg.avatar+'" class="avt img-responsive">\
+                        <div class="message">\
+                        <span class="chat-arrow"></span>\
+                        <a href="javascript:void(0)" class="chat-name">'+msg.name+'</a>&nbsp;\
+                        <span class="chat-datetime">'+timeSince(new Date(msg.dt_updated))+'</span>'
+
+                        // add last seen feature
+                        if(msg.sender == logged_in_user) {
+                            if(msg.is_read == 1)
+                                li += '<span class="chat-lastseen pull-right read"><i class="fa fa-check-square-o"></i></span>';
+                            else
+                                li += '<span class="chat-lastseen pull-right unread"><i class="fa fa-check-square-o"></i></span>';
+                        }
+
+                        li += '<span class="chat-body">'+msg.message+'</span></div></li>';
+
+                        $('ul.addchat-container-body').append(li);
+                        $('ul.addchat-container-body').animate({scrollTop: $('ul.addchat-container-body').prop("scrollHeight")}, 500);    
+                    } else {
+                        alert(response.response);
+                    }
+                    
+                }
+            });
+        }
     }
 
     });
@@ -515,6 +559,7 @@ $(function(e) {
                 cache   : false,
                 success : function(response) {
                     if(response.status) {
+                        console.log(msg.avatar);
                         msg = response.message;
                         li = '<li class=" bubble '+ msg.type +'"><img src="'+base_url+msg.avatar+'" class="avt img-responsive">\
                         <div class="message">\

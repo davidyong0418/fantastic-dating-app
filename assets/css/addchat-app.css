@@ -46,7 +46,7 @@
     /* padding: 14px; */
     /* padding-right: 10px; */
     width: 100%;
-    font-size: 21px !important;
+    font-size: 19px !important;
 }
 
 /*addChat user box*/
@@ -117,7 +117,6 @@
 .user_status {
     display: table-cell;
     vertical-align: middle;
-    float: right;
     line-height: 27px;
 }
 
@@ -154,6 +153,7 @@
 }
 #chat-container .user-status.is-online {
     background-color: #06b53c;
+    float: right;
 }
 #chat-container .user-status.is-busy {
     background-color: #ee4749;
@@ -163,6 +163,7 @@
 }
 #chat-container .user-status.is-offline {
     background-color: #666666;
+    float: right;
 }
 #chat-container .addchat-inner {
     background-color: #f9f9f9;
@@ -187,14 +188,15 @@
     font-size: 15px;
     margin-left:20px;
 }
+#chat-container .dropdown-menu .input-sm{
+    height: 25px;
+}
 .popover {
     z-index: 999999;
     max-width: 12%;
     background: #ffffffc7;
 }
-#chat-container .addchat-group {
-    margin-top: 10px;
-}
+
 #chat-container .addchat-group > strong {
     text-transform: uppercase;
     color: #767676;
@@ -250,7 +252,7 @@
     position: absolute;
     right: 265px;
     width: 260px;
-    top: -50px !important;
+    top: 0px !important;
     /* background-color: #f9f9f9; */
     -webkit-background-clip: padding-box;
     -moz-background-clip: padding;
@@ -336,6 +338,9 @@
 .emoji-wysiwyg-editor{
     text-align: left !important;
     white-space: normal;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 12px;
+    height: 48px !important;
 }
 #chat-container #addchat-container .chat-textarea textarea {
     background: #eeeeee;
@@ -475,6 +480,7 @@
     color: white;
     transition: all 0.3s;
     -webkit-transition: all 0.3s;
+    border: none;
 }
 #addchat-container .chat-lastseen.read {
     color: #4DD0E1;
@@ -495,7 +501,7 @@
 }*/
 #chat-container .dropdown-menu {
     left: -120px;
-    min-width: 260px;
+    min-width: 225px;
     padding: 10px 0px 10px 0px;
     margin: 8px 0 0;
     text-align: center;
@@ -504,7 +510,7 @@
 }
 #addchat-container .dropdown-menu {
     margin-top: 26px;
-    left: -7px;
+    left: -90px;
 }
 #addchat-container .addchat-container-header .addchat-config {
     color: #ffffff;
@@ -513,10 +519,10 @@
 }
 #chat-container .dropdown-menu.chat-search {
     min-width: 260px;
-    left: -132px;
-    top: -54px;
+    left: -140px;
+    top: -40px;
     background: #252525;
-    padding: 8px 8px 6px 8px;
+    padding: 2px 5px 2px 5px;
 }
 #chat-container .dropdown-menu.chat-search a{
     padding: 0px !important;

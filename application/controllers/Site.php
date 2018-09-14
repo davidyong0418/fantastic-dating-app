@@ -441,7 +441,20 @@ class Site extends CI_Controller {
 		    
 		    $config["total_rows"] 	= $users_count;
 		    $this->pagination->initialize($config);
-	        $data["users"] = $users;
+			$data["users"] = $users;
+			
+			foreach ($users as $user_info)
+			{
+				$update = array(
+					'ac_online' =>$user_info['is_online']
+				);
+				$this->db->where('username', $user_info['username']);
+        		$this->db->update('user', $update);
+			}
+			$online_users_info =array(
+				'online_users_info' =>  $users
+			); 
+			$this->session->set_userdata($online_users_info);
 	        $data["links"] = $this->pagination->create_links();
 	        
 	        $data["jscripts"] = array(

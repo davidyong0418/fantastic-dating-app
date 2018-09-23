@@ -1,5 +1,3 @@
-# OkDate
-
 ## Database
 
 **database.php**
@@ -133,7 +131,6 @@
 
 ## Parse
 
-Development OkDate App on Parse
 
 **parse.php**
 

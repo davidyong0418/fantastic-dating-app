@@ -71,7 +71,7 @@
 		'hostname' => 'localhost',
 		'username' => 'root',
 		'password' => '',
-		'database' => 'okdate',
+		'database' => 'datingapp',
 		'dbdriver' => 'mysqli',
 		'dbprefix' => '',
 		'pconnect' => FALSE,
@@ -94,7 +94,7 @@
 
 	$config['protocol'] = 'smtp';
 	$config['smtp_host'] = 'mail.example.com';
-	$config['smtp_user'] = 'okdate@example.com';
+	$config['smtp_user'] = 'user';
 	$config['smtp_pass'] = 'password';
 	$config['smtp_port'] = '587';
 
@@ -122,17 +122,11 @@
 	|  facebook_permissions          array   The permissions you need.
 	*/
 
-	$config['facebook_app_id']              = '1704744529770179';
-	$config['facebook_app_secret']          = '498151246f4b0139b9e116e3e65bc269';
+	$config['facebook_app_id']              = '';
+	$config['facebook_app_secret']          = '';
 	$config['facebook_login_type']          = 'web';
 	$config['facebook_login_redirect_url']  = 'user/fb_login';
 	$config['facebook_logout_redirect_url'] = 'user/logout';
 	$config['facebook_permissions']         = array('public_profile, email');
 
 ## Parse
-
-
-**parse.php**
-
-	$config['parse_app_id'] = 'AaBH3r02U7ltlVznSPlORQO5BDy6ryCxbOBMb5Nz';
-	$config['parse_rest_key'] = 'rdk3AXlvxJ8xPyW44mJKK0DvTmy6CuNwbUG2wvCb';
